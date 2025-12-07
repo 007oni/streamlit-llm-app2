@@ -37,7 +37,7 @@ def get_llm_response(input_text, expert_type):
     ]
 
     # LLMからの応答を取得
-    response = chat(messages)
+    response = chat.generate(messages)
     return response.content
 
 # Streamlitアプリケーション
