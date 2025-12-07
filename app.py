@@ -32,8 +32,8 @@ def get_llm_response(input_text, expert_type):
     # LangChainのChatOpenAIを使用
     chat = ChatOpenAI(temperature=0)
     messages = [
-        SystemMessage(content=system_message),
-        HumanMessage(content=input_text)
+    SystemMessage(content=str(system_message)),
+    HumanMessage(content=str(input_text))
     ]
 
     # LLMからの応答を取得
