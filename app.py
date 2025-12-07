@@ -10,17 +10,6 @@ from langchain.messages import SystemMessage, HumanMessage
 
 # LLMからの回答を取得する関数
 def get_llm_response(input_text, expert_type):
-    """
-    入力テキストと専門家の種類を基にLLMからの回答を取得する。
-
-    Args:
-        input_text (str): ユーザーが入力したテキスト。
-        expert_type (str): 選択された専門家の種類。
-
-    Returns:
-        str: LLMからの回答。
-    """
-    # 専門家の種類に応じたシステムメッセージを設定
     expert_prompts = {
         "筋トレのプロ": "あなたは筋トレのプロフェッショナルです。筋トレに関する質問に答えてください。",
         "スイーツ専門家": "あなたは東京都内のスイーツを知り尽くしたスイーツ専門家です。スイーツに関する質問に答えてください。",
@@ -29,15 +18,17 @@ def get_llm_response(input_text, expert_type):
 
     system_message = expert_prompts.get(expert_type, "あなたは知識豊富なアシスタントです。")
 
-    # LangChainのChatOpenAIを使用
     chat = ChatOpenAI(temperature=0)
     messages = [
-    SystemMessage(content=str(system_message)),
-    HumanMessage(content=str(input_text))
+        SystemMessage(content=str(system_message)),
+        HumanMessage(content=str(input_text))
     ]
 
+    # デバッグ用ログ
+    st.write("Debug: Messages", messages)
+
     # LLMからの応答を取得
-    response = chat.generate(messages)
+    response = chat(messages)  
     return response.content
 
 # Streamlitアプリケーション
