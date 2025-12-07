@@ -24,12 +24,9 @@ def get_llm_response(input_text, expert_type):
         HumanMessage(content=input_text)
     ]
 
-    # デバッグ用ログ
-    for message in messages:
-        st.write(f"Type: {type(message)}, Content: {message.content}")
 
     # LLMからの応答を取得
-    response = chat.invoke(messages)  # generateメソッドを使用
+    response = chat.invoke(messages)
     return response.content
 
 # Streamlitアプリケーション
