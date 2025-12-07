@@ -28,7 +28,7 @@ def get_llm_response(input_text, expert_type):
     st.write("Debug: Messages", messages)
 
     # LLMからの応答を取得
-    response = chat(messages)  # generateではなく__call__を使用
+    response = chat.generate(messages)  # generateメソッドを使用
     return response.content
 
 # Streamlitアプリケーション
