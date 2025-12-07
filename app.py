@@ -16,12 +16,16 @@ def get_llm_response(input_text, expert_type):
         "AIプログラミング専門家": "あなたはAIプログラミングに詳しいものです。AIプログラミングに関する質問に答えてください。"
     }
 
+    # 専門家の種類に応じたシステムメッセージを取得
     system_message = expert_prompts.get(expert_type, "あなたは知識豊富なアシスタントです。")
 
+    # ChatOpenAIインスタンスを作成
     chat = ChatOpenAI(temperature=0)
+
+    # messagesを正しい形式で構築
     messages = [
-        SystemMessage(content=system_message),
-        HumanMessage(content=input_text)
+        SystemMessage(content=system_message),  # システムメッセージ
+        HumanMessage(content=input_text)       # ユーザー入力メッセージ
     ]
 
     # デバッグ用ログ
