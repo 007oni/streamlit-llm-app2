@@ -20,14 +20,14 @@ def get_llm_response(input_text, expert_type):
 
     chat = ChatOpenAI(temperature=0)
     messages = [
-        SystemMessage(content=str(system_message)),
-        HumanMessage(content=str(input_text))
+    SystemMessage(content=system_message),
+    HumanMessage(content=input_text)
     ]
 
     # デバッグ用ログ
     st.write("Debug: Messages", messages)
 
-    response = chat.generate(messages)
+    response = chat(messages)
     return response.content
 
 # Streamlitアプリケーション
