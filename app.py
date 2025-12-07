@@ -5,7 +5,7 @@ load_dotenv()
 
 import streamlit as st
 from langchain_openai import ChatOpenAI
-from langchain.schema import SystemMessage, HumanMessage
+from langchain.messages import SystemMessage, HumanMessage
 
 
 # LLMからの回答を取得する関数
